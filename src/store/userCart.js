@@ -23,10 +23,18 @@ const slice = createSlice({
         time: state.time + action.payload.time,
       };
     },
-    updateQty(state, action) {
+    decreaseQty(state, action) {
       return {
         ...state,
-        qty: action.payload.qty,
+        qty: state.qty - 1,
+        total: state.total / 2,
+      };
+    },
+    increaseQty(state, action) {
+      return {
+        ...state,
+        qty: state.qty + 1,
+        total: state.total * 2,
       };
     },
     updateSize(state, action) {
@@ -52,7 +60,8 @@ const slice = createSlice({
 
 export const {
   updateTotal,
-  updateQty,
+  increaseQty,
+  decreaseQty,
   updateStep,
   updateTime,
   updateSize,

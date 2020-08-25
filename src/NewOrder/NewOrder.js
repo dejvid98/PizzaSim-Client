@@ -9,16 +9,10 @@ import {
 // Relative imports
 import styles from './NewOrder.module.scss';
 import Navbar from '../Layout/Navbar';
-import ingredients from './ingredients';
 import store from '../store/store';
-import {
-  updateStep,
-  updateQty,
-  updateTime,
-  updateTotal,
-  updateSize,
-  updateIng,
-} from '../store/userCart';
+import Size from './Size';
+import Ing from './Ing';
+import Quantity from './Quantity';
 
 const NewOrder = () => {
   const [orderStep, setOrderStep] = useState('size');
@@ -36,26 +30,11 @@ const NewOrder = () => {
     setQty(userCart.qty);
   };
 
-  const handleSize = (size, total, time) => {
-    store.dispatch(updateSize({ size }));
-    store.dispatch(updateTotal({ total }));
-    store.dispatch(updateTime({ time }));
-    store.dispatch(updateStep({ step: 'ing' }));
-  };
-
-  const handleIng = (ing, total, time) => {
-    store.dispatch(updateIng({ ing }));
-    store.dispatch(updateTotal({ total }));
-    store.dispatch(updateTime({ time }));
-    store.dispatch(updateStep({ step: 'ing' }));
-  };
   useEffect(() => {
     updateState(store.getState());
     store.subscribe(() => updateState(store.getState()));
   }, []);
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
+
   return (
     <div className={styles.container}>
       <Navbar />
@@ -83,104 +62,10 @@ const NewOrder = () => {
           </p>
         </div>
       </div>
-      {orderStep === 'size' ? (
-        <div className={styles.mainStepWrapper}>
-          <h3 className={styles.ingredientHeading}>Size</h3>
-          <div className={styles.ingWrapper}>
-            <div
-              className={styles.sizeWrapper}
-              onClick={() => {
-                handleSize('small', 200, 1);
-              }}
-            >
-              <p>Small</p>
-              <div className={styles.values}>
-                <div className={styles.moneyValueWrapper}>
-                  <DollarOutlined />
-                  <p>200$</p>
-                </div>
-                <div className={styles.timeValueWrapper}>
-                  <ClockCircleOutlined />
-                  <p>1s</p>
-                </div>
-              </div>
-            </div>
-            <div
-              className={styles.sizeWrapper}
-              onClick={() => {
-                handleSize('medium', 400, 2);
-              }}
-            >
-              <p>Medium</p>
-              <div className={styles.values}>
-                <div className={styles.moneyValueWrapper}>
-                  <DollarOutlined />
-                  <p>400$</p>
-                </div>
-                <div className={styles.timeValueWrapper}>
-                  <ClockCircleOutlined />
-                  <p>2s</p>
-                </div>
-              </div>
-            </div>
-            <div
-              className={styles.sizeWrapper}
-              onClick={() => {
-                handleSize('large', 600, 3);
-              }}
-            >
-              <p>Large</p>
-              <div className={styles.values}>
-                <div className={styles.moneyValueWrapper}>
-                  <DollarOutlined />
-                  <p>600$</p>
-                </div>
-                <div className={styles.timeValueWrapper}>
-                  <ClockCircleOutlined />
-                  <p>3s</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : null}
 
-      {orderStep === 'ing' ? (
-        <div className={styles.mainStepWrapper}>
-          <h3 className={styles.ingredientHeading}>Ingredients</h3>
-          <div className={styles.ingWrapper}>
-            {ingredients.map((item, index) => (
-              <div className={styles.ingredient} key={index}>
-                <div className={styles.imageWrapper}>
-                  <img src={item.picture} alt='food' />
-                </div>
-                <div className={styles.textWrapper}>
-                  <p className={styles.ingName}>
-                    {capitalizeFirstLetter(item.name)}
-                  </p>
-                  <div className={styles.valuesWrapper}>
-                    <div className={styles.moneyValueWrapper}>
-                      <DollarOutlined />
-                      <p>{item.price}$</p>
-                    </div>
-                    <div className={styles.timeValueWrapper}>
-                      <ClockCircleOutlined />
-                      <p>{item.time}s</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
-
-      {orderStep === 'qty' ? (
-        <div className={styles.mainStepWrapper}>
-          <h3 className={styles.ingredientHeading}>Quantity</h3>
-          <div className={styles.ingWrapper}></div>
-        </div>
-      ) : null}
+      {orderStep === 'size' ? <Size /> : null}
+      {orderStep === 'ing' ? <Ing ing={ing} /> : null}
+      {orderStep === 'qty' ? <Quantity qty={qty} /> : null}
     </div>
   );
 };

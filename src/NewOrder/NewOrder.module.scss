@@ -190,3 +190,27 @@
     transform: translateY(0rem);
   }
 }
+
+.innerWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .decreaseIcon {
+    color: #db4437;
+    position: relative;
+    bottom: 1.5rem;
+    font-size: 3rem;
+    margin-right: 1.5rem;
+    cursor: pointer;
+  }
+
+  .increaseIcon {
+    color: #777;
+    position: relative;
+    bottom: 1.5rem;
+    font-size: 3rem;
+    margin-left: 1.5rem;
+    cursor: pointer;
+  }
+}
