@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 8rem;
+  min-height: 100vh;
+
+  .heading {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 2px solid #ff5700;
+    width: 50vw;
+
+    .iconWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      p {
+        font-size: 1rem;
+        color: #777;
+      }
+    }
+
+    .moneyIcon {
+      color: #0f9d58;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .timeIcon {
+      color: #4285f4;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .qtyIcon {
+      color: #f4b400;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .value {
+      font-size: 1.5rem;
+      color: #20232a;
+      margin-left: 0.5rem;
+    }
+  }
+
+  .ingWrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 50vw;
+    .ingredient {
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      margin: 1rem;
+      flex-basis: 20%;
+    }
+  }
+}

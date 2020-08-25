@@ -1,8 +1,11 @@
+// Libraries imports
 import React, { useEffect, useState } from 'react';
-import styles from './OrderList.module.scss';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, RedoOutlined } from '@ant-design/icons';
+
+// Relative imports
+import styles from './OrderList.module.scss';
 import HTTP from '../Util/HTTP';
 
 const OrdersList = () => {
@@ -10,6 +13,12 @@ const OrdersList = () => {
   const getAllOrders = async () => {
     const resp = await HTTP.get('/order');
     setOrders(resp.data.data);
+  };
+
+  const formatDate = (dateInput) => {
+    const date = new Date(dateInput).toLocaleDateString();
+    const time = new Date(dateInput).toLocaleTimeString();
+    return `${date} ${time}`;
   };
   useEffect(() => {
     getAllOrders();
@@ -39,6 +48,7 @@ const OrdersList = () => {
           <p>Quantity</p>
           <p>Total</p>
           <p>Date</p>
+          <p>Order</p>
         </div>
         <div className={styles.list}>
           {orders
@@ -49,7 +59,19 @@ const OrdersList = () => {
                   <p>{order.ingredient}</p>
                   <p>{order.quantity}</p>
                   <p>{order.price * order.quantity}$</p>
-                  <p>{new Date(order.ordertime).toLocaleDateString()}</p>
+                  <p>{formatDate(order.ordertime)}</p>
+                  <div>
+                    <Button
+                      type='secondary'
+                      shape='round'
+                      icon={<RedoOutlined />}
+                      danger
+                      size='medium'
+                      className={styles.orderAgain}
+                    >
+                      Order again
+                    </Button>
+                  </div>
                 </div>
               ))
             : null}
