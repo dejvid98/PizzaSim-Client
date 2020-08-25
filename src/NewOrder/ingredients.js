@@ -11,7 +11,7 @@ export default [
     price: 5,
     time: 100,
     picture:
-      'https://images.unsplash.com/photo-1576856497337-4f2be24683da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1282&q=80',
+      'https://images.unsplash.com/photo-1571680322279-a226e6a4cc2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=805&q=80',
   },
   {
     name: 'pepperoni',
@@ -25,7 +25,7 @@ export default [
     price: 13,
     time: 180,
     picture:
-      'https://images.unsplash.com/photo-1583328439472-8130d925d63c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1396&q=80',
+      'https://images.unsplash.com/photo-1583328652090-c95291f8cdd8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=837&q=80',
   },
   {
     name: 'onions',
@@ -39,7 +39,7 @@ export default [
     price: 8,
     time: 190,
     picture:
-      'https://images.unsplash.com/photo-1566071732121-8f2669919fe5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1591519032431-61846409b320?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
   },
   {
     name: 'bacon',

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <div className={styles.container}>
-      <Link className={styles.logo}>
+      <Link className={styles.logo} to='/'>
         <img src='Logo.svg' alt='Pizza logo' />
       </Link>
       <Link className={styles.adminLink}>Admin Dashboard</Link>

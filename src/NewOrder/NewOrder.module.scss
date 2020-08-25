@@ -11,7 +11,7 @@
     justify-content: space-evenly;
     align-items: center;
     border-bottom: 2px solid #ff5700;
-    width: 50vw;
+    width: 75vw;
 
     .iconWrapper {
       display: flex;
@@ -50,15 +50,143 @@
     }
   }
 
+  .ingredientHeading {
+    margin: 1.5rem 0rem 3rem 0rem;
+    font-size: 2rem;
+    color: #777;
+    letter-spacing: 1px;
+  }
+
   .ingWrapper {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 50vw;
+    width: 75vw;
+
     .ingredient {
-      border: 1px solid rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 5px;
+      padding: 1rem 1.1rem 1rem 0rem;
       margin: 1rem;
-      flex-basis: 20%;
+      flex-basis: 22.6%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s linear;
+      cursor: pointer;
+
+      &:hover {
+        border-color: #4285f4;
+      }
+
+      .imageWrapper {
+        border-radius: 20rem;
+        width: 10rem;
+        height: 7rem;
+        margin-right: auto;
+        position: relative;
+        left: 1rem;
+        img {
+          border-radius: 20rem;
+          height: 7rem;
+          width: 7rem;
+        }
+      }
+
+      .textWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        height: 100%;
+        margin-right: auto;
+
+        :first-child {
+          font-size: 1.2rem;
+        }
+
+        .valuesWrapper {
+          display: flex;
+        }
+      }
     }
+  }
+}
+
+.ingName {
+  font-size: 1.5rem !important;
+}
+
+.moneyValueWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  :first-child {
+    color: #0f9d58;
+    margin-right: 0.2rem;
+  }
+  :nth-child(2) {
+    font-size: 0.8rem;
+    position: relative;
+    top: 0.3rem;
+    margin-right: 1.5rem;
+  }
+}
+
+.timeValueWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  :first-child {
+    color: #4285f4;
+    margin-right: 0.2rem;
+  }
+  :nth-child(2) {
+    font-size: 0.8rem;
+    position: relative;
+    top: 0.3rem;
+  }
+}
+
+.sizeWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s linear;
+
+  &:hover {
+    border-color: #4285f4;
+  }
+
+  .values {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.mainStepWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: moveInFromBottom 0.4s ease-out;
+}
+
+@keyframes moveInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
   }
 }
