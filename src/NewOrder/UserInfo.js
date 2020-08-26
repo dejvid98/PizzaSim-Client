@@ -22,6 +22,7 @@ import {
   updateStep,
   updateOrderDate,
   updateOrderId,
+  updateStartTime,
 } from '../store/userCart';
 
 const UserInfo = () => {
@@ -35,7 +36,8 @@ const UserInfo = () => {
     store.dispatch(updateLastname({ lastname }));
     store.dispatch(updatePhonenumber({ phonenumber }));
     store.dispatch(updateAddress({ address }));
-    const { qty, ing, size } = store.getState().userCart;
+    const { qty, ing, size, total, time } = store.getState().userCart;
+
     const resp = await HTTP.post('/order', {
       size,
       ingredient: ing,
@@ -44,13 +46,16 @@ const UserInfo = () => {
       lastname,
       address,
       phonenumber,
+      price: total,
+      time,
     });
-    const { queueTime, ordersLeft } = resp.data;
+    const { queueTime, ordersLeft, id } = resp.data;
     store.dispatch(updateQueueTime({ queueTime }));
     store.dispatch(updateOrdersLeft({ ordersLeft }));
     store.dispatch(updateStep({ step: 4 }));
-    store.dispatch(updateOrderDate({ orderDate: `${Date.now()}` }));
-    store.dispatch(updateOrderId({ orderId: resp.id }));
+    store.dispatch(updateOrderDate({ orderDate: new Date().toLocaleString() }));
+    store.dispatch(updateOrderId({ orderid: id }));
+    store.dispatch(updateStartTime({ startTime: queueTime }));
   };
 
   return (

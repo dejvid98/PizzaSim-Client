@@ -28,7 +28,7 @@ const NewOrder = () => {
 
   const changeStep = (step) => {
     const currentStep = store.getState().userCart.step;
-    if (currentStep > step || currentStep !== 4)
+    if (currentStep > step && currentStep !== 4)
       store.dispatch(updateStep({ step }));
   };
 

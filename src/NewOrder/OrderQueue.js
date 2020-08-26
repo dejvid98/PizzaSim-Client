@@ -1,64 +1,57 @@
 // Libraries imports
-import React, { useState, useEffect } from 'react';
-import { Statistic } from 'antd';
+import React, { useEffect } from 'react';
+import { Button } from 'antd';
 import io from 'socket.io-client';
 
 // Relative imports
 import styles from './OrderQueue.module.scss';
 import store from '../store/store';
 import HTTP from '../Util/HTTP';
-import { updateQueueTime, updateOrdersLeft } from '../store/userCart';
+import Timer from './Timer';
+import {
+  updateQueueTime,
+  updateOrdersLeft,
+  reduceQueueTime,
+} from '../store/userCart';
 
 const OrderQueue = () => {
-  const [deadline, setDeadline] = useState(Date.now());
-  const [ordersState, setOrdersState] = useState(0);
-  const [orderDateState, setOrderDateState] = useState(new Date());
-  const [orderIdState, setOrderIdState] = useState('');
-  const { Countdown } = Statistic;
   const socket = io.connect(`http://localhost:3033`);
 
   const cancelOrder = async () => {
-    await HTTP.delete('/orders', { id: orderIdState });
+    const resp = await HTTP.delete('/order', {
+      id: store.getState().userCart.orderid,
+    });
+  };
+
+  const updateQueue = (orders, startTime, timeTick, ordersLeft) => {
+    const timeDiff = timeTick - (startTime - orders.queueTime);
+    store.dispatch(updateQueueTime({ queueTime: timeDiff }));
+    store.dispatch(updateOrdersLeft({ ordersLeft: ordersLeft - 1 }));
   };
 
   useEffect(() => {
-    const {
-      queueTime,
-      ordersLeft,
-      orderDate,
-      orderId,
-    } = store.getState().userCart;
-    setDeadline(Date.now() + queueTime * 1000);
-    setOrdersState(ordersLeft);
-    setOrderDateState(orderDate);
-    setOrderIdState(orderId);
+    setInterval(() => {
+      store.dispatch(reduceQueueTime({}));
+    }, 1000);
 
     socket.on('orders', (orders) => {
-      if (new Date(orders.orderDate) < new Date(orderDateState)) {
-        store.dispatch(
-          updateQueueTime({
-            queueTime: orders.queueTime,
-          })
-        );
+      if (
+        new Date(orders.orderDate) <
+        new Date(store.getState().userCart.orderDate)
+      ) {
+        const { ordersLeft, queueTime, startTime } = store.getState().userCart;
+        updateQueue(orders, startTime, queueTime, ordersLeft);
       }
     });
   }, []);
 
-  const onFinish = () => {
-    console.log('finished!');
-  };
   return (
     <div className={styles.container}>
       <h3>Order successfully placed!</h3>
-      <p>
-        Your place in the queue <span>{ordersState}</span>
-      </p>
-
-      <Countdown
-        title='Pizza will be ready in'
-        value={deadline}
-        onFinish={onFinish}
-      />
+      <Timer />
+      <Button danger onClick={cancelOrder}>
+        Cancel Order
+      </Button>
     </div>
   );
 };

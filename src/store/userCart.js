@@ -7,7 +7,7 @@ const slice = createSlice({
     time: 0,
     qty: 1,
     size: '',
-    step: 4,
+    step: 0,
     ing: '',
     fisrtname: '',
     lastname: '',
@@ -16,7 +16,8 @@ const slice = createSlice({
     queueTime: 0,
     ordersLeft: 0,
     orderDate: '',
-    orderId: '',
+    orderid: '',
+    startTime: '',
   },
   reducers: {
     updateTotal(state, action) {
@@ -95,6 +96,18 @@ const slice = createSlice({
         queueTime: action.payload.queueTime,
       };
     },
+    reduceQueueTime(state, action) {
+      return {
+        ...state,
+        queueTime: state.queueTime - 1,
+      };
+    },
+    updateStartTime(state, action) {
+      return {
+        ...state,
+        startTime: action.payload.startTime,
+      };
+    },
     updateOrdersLeft(state, action) {
       return {
         ...state,
@@ -110,7 +123,7 @@ const slice = createSlice({
     updateOrderId(state, action) {
       return {
         ...state,
-        orderId: action.payload.orderId,
+        orderid: action.payload.orderid,
       };
     },
   },
@@ -132,6 +145,8 @@ export const {
   updateOrdersLeft,
   updateOrderDate,
   updateOrderId,
+  updateStartTime,
+  reduceQueueTime,
 } = slice.actions;
 
 export default slice.reducer;
