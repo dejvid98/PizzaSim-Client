@@ -7,12 +7,16 @@ const slice = createSlice({
     time: 0,
     qty: 1,
     size: '',
-    step: 0,
+    step: 4,
     ing: '',
     fisrtname: '',
     lastname: '',
     address: '',
     phonenumber: '',
+    queueTime: 0,
+    ordersLeft: 0,
+    orderDate: '',
+    orderId: '',
   },
   reducers: {
     updateTotal(state, action) {
@@ -32,6 +36,7 @@ const slice = createSlice({
         ...state,
         qty: state.qty - 1,
         total: state.total / 2,
+        time: state.time / 2,
       };
     },
     increaseQty(state, action) {
@@ -39,6 +44,7 @@ const slice = createSlice({
         ...state,
         qty: state.qty + 1,
         total: state.total * 2,
+        time: state.time * 2,
       };
     },
     updateSize(state, action) {
@@ -83,6 +89,30 @@ const slice = createSlice({
         phonenumber: action.payload.phonenumber,
       };
     },
+    updateQueueTime(state, action) {
+      return {
+        ...state,
+        queueTime: action.payload.queueTime,
+      };
+    },
+    updateOrdersLeft(state, action) {
+      return {
+        ...state,
+        ordersLeft: action.payload.ordersLeft,
+      };
+    },
+    updateOrderDate(state, action) {
+      return {
+        ...state,
+        orderDate: action.payload.orderDate,
+      };
+    },
+    updateOrderId(state, action) {
+      return {
+        ...state,
+        orderId: action.payload.orderId,
+      };
+    },
   },
 });
 
@@ -98,6 +128,10 @@ export const {
   updateFirstname,
   updateLastname,
   updatePhonenumber,
+  updateQueueTime,
+  updateOrdersLeft,
+  updateOrderDate,
+  updateOrderId,
 } = slice.actions;
 
 export default slice.reducer;

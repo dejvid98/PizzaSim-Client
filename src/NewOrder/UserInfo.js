@@ -17,6 +17,11 @@ import {
   updateFirstname,
   updateLastname,
   updatePhonenumber,
+  updateOrdersLeft,
+  updateQueueTime,
+  updateStep,
+  updateOrderDate,
+  updateOrderId,
 } from '../store/userCart';
 
 const UserInfo = () => {
@@ -40,7 +45,12 @@ const UserInfo = () => {
       address,
       phonenumber,
     });
-    console.log(resp);
+    const { queueTime, ordersLeft } = resp.data;
+    store.dispatch(updateQueueTime({ queueTime }));
+    store.dispatch(updateOrdersLeft({ ordersLeft }));
+    store.dispatch(updateStep({ step: 4 }));
+    store.dispatch(updateOrderDate({ orderDate: `${Date.now()}` }));
+    store.dispatch(updateOrderId({ orderId: resp.id }));
   };
 
   return (

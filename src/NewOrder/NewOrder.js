@@ -15,6 +15,7 @@ import Size from './Size';
 import Ing from './Ingredients';
 import Quantity from './Quantity';
 import UserInfo from './UserInfo';
+import OrderQueue from './OrderQueue';
 import { updateStep } from '../store/userCart';
 
 const NewOrder = () => {
@@ -27,7 +28,8 @@ const NewOrder = () => {
 
   const changeStep = (step) => {
     const currentStep = store.getState().userCart.step;
-    if (currentStep > step) store.dispatch(updateStep({ step }));
+    if (currentStep > step || currentStep !== 4)
+      store.dispatch(updateStep({ step }));
   };
 
   const updateState = (storeState) => {
@@ -85,6 +87,7 @@ const NewOrder = () => {
       {orderStep === 1 ? <Ing ing={ing} /> : null}
       {orderStep === 2 ? <Quantity qty={qty} /> : null}
       {orderStep === 3 ? <UserInfo /> : null}
+      {orderStep === 4 ? <OrderQueue /> : null}
     </div>
   );
 };

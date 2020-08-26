@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h3 {
+    font-size: 2rem;
+    color: #777;
+    letter-spacing: 1px;
+    margin-top: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+
+    span {
+      font-weight: bold;
+    }
+  }
+}
