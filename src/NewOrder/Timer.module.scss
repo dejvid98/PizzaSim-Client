@@ -1,0 +1,31 @@
+.ready {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 4rem;
+
+  h1 {
+    color: rgb(71, 71, 71);
+    margin-bottom: 2rem;
+  }
+  img {
+    width: 45rem;
+  }
+}
+
+.waiting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.loader {
+  margin-top: 3rem;
+}
+
+.cancel {
+  margin: 3rem;
+}

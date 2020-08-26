@@ -52,8 +52,8 @@ const OrdersList = () => {
         </div>
         <div className={styles.list}>
           {orders
-            ? orders.map((order) => (
-                <div className={styles.order}>
+            ? orders.map((order, index) => (
+                <div className={styles.order} key={index}>
                   <p>{`${order.firstname} ${order.lastname}`}</p>
                   <p>{order.size}</p>
                   <p>{order.ingredient}</p>

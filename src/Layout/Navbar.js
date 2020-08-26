@@ -11,7 +11,9 @@ const Navbar = () => {
       <Link className={styles.logo} to='/'>
         <img src='Logo.svg' alt='Pizza logo' />
       </Link>
-      <Link className={styles.adminLink}>Admin Dashboard</Link>
+      <Link to='admin' className={styles.adminLink}>
+        Admin Dashboard
+      </Link>
     </div>
   );
 };

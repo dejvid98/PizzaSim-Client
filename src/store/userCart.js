@@ -126,6 +126,26 @@ const slice = createSlice({
         orderid: action.payload.orderid,
       };
     },
+    resetStore(state, action) {
+      return {
+        ...state,
+        total: 0,
+        time: 0,
+        qty: 1,
+        size: '',
+        step: 0,
+        ing: '',
+        fisrtname: '',
+        lastname: '',
+        address: '',
+        phonenumber: '',
+        queueTime: 0,
+        ordersLeft: 0,
+        orderDate: '',
+        orderid: '',
+        startTime: '',
+      };
+    },
   },
 });
 
@@ -147,6 +167,7 @@ export const {
   updateOrderId,
   updateStartTime,
   reduceQueueTime,
+  resetStore,
 } = slice.actions;
 
 export default slice.reducer;
