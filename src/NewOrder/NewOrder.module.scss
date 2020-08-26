@@ -177,7 +177,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  animation: moveInFromBottom 0.4s ease-out;
+  animation: moveInFromBottom 0.3s linear;
 }
 
 @keyframes moveInFromBottom {
@@ -213,4 +213,9 @@
     margin-left: 1.5rem;
     cursor: pointer;
   }
+}
+
+.stepsWrapper {
+  margin-top: 1rem;
+  width: 75vw;
 }

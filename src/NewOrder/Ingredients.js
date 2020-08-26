@@ -3,7 +3,7 @@ import React from 'react';
 import { DollarOutlined, ClockCircleOutlined } from '@ant-design/icons';
 
 // Relative imports
-import ingredients from './ingredients';
+import ingredients from './ListOfIngredients';
 import styles from './NewOrder.module.scss';
 import store from '../store/store';
 import {
@@ -18,7 +18,7 @@ const Ing = () => {
     store.dispatch(updateIng({ ing }));
     store.dispatch(updateTotal({ total }));
     store.dispatch(updateTime({ time }));
-    store.dispatch(updateStep({ step: 'qty' }));
+    store.dispatch(updateStep({ step: 2 }));
   };
 
   const capitalizeFirstLetter = (string) => {

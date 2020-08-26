@@ -7,7 +7,7 @@ const slice = createSlice({
     time: 0,
     qty: 1,
     size: '',
-    step: 'size',
+    step: 0,
     ing: '',
   },
   reducers: {

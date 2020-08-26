@@ -17,7 +17,7 @@ const Size = () => {
     store.dispatch(updateSize({ size }));
     store.dispatch(updateTotal({ total }));
     store.dispatch(updateTime({ time }));
-    store.dispatch(updateStep({ step: 'ing' }));
+    store.dispatch(updateStep({ step: 1 }));
   };
   return (
     <div className={styles.mainStepWrapper}>

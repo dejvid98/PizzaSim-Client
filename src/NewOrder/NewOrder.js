@@ -5,14 +5,16 @@ import {
   ClockCircleOutlined,
   DatabaseOutlined,
 } from '@ant-design/icons';
+import { Steps } from 'antd';
 
 // Relative imports
 import styles from './NewOrder.module.scss';
 import Navbar from '../Layout/Navbar';
 import store from '../store/store';
 import Size from './Size';
-import Ing from './Ing';
+import Ing from './Ingredients';
 import Quantity from './Quantity';
+import { updateStep } from '../store/userCart';
 
 const NewOrder = () => {
   const [orderStep, setOrderStep] = useState('size');
@@ -20,6 +22,12 @@ const NewOrder = () => {
   const [ing, setIng] = useState('');
   const [time, setTime] = useState(0);
   const [qty, setQty] = useState(1);
+  const { Step } = Steps;
+
+  const changeStep = (step) => {
+    const currentStep = store.getState().userCart.step;
+    if (currentStep > step) store.dispatch(updateStep({ step }));
+  };
 
   const updateState = (storeState) => {
     const { userCart } = storeState;
@@ -62,10 +70,18 @@ const NewOrder = () => {
           </p>
         </div>
       </div>
+      <div className={styles.stepsWrapper}>
+        <Steps current={store.getState().userCart.step} onChange={changeStep}>
+          <Step title='Size' />
+          <Step title='Ingredients' />
+          <Step title='Quantity' />
+          <Step title='Contact Details' />
+        </Steps>
+      </div>
 
-      {orderStep === 'size' ? <Size /> : null}
-      {orderStep === 'ing' ? <Ing ing={ing} /> : null}
-      {orderStep === 'qty' ? <Quantity qty={qty} /> : null}
+      {orderStep === 0 ? <Size /> : null}
+      {orderStep === 1 ? <Ing ing={ing} /> : null}
+      {orderStep === 2 ? <Quantity qty={qty} /> : null}
     </div>
   );
 };
