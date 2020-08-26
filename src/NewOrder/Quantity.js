@@ -1,26 +1,16 @@
 // Libraries imports
 import React from 'react';
 import { Button } from 'antd';
-
-import {
-  MinusCircleOutlined,
-  PlusCircleOutlined,
-  CheckCircleOutlined,
-} from '@ant-design/icons';
+import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
 
 // Relative imports
 import styles from './NewOrder.module.scss';
 import store from '../store/store';
-import { increaseQty, decreaseQty } from '../store/userCart';
-import HTTP from '../Util/HTTP';
+import { increaseQty, decreaseQty, updateStep } from '../store/userCart';
 
 const Quantity = ({ qty }) => {
-  const completeOrder = async () => {
-    const { size, time, ing, qty } = store.getState().userCart;
-  };
   return (
     <div className={styles.mainStepWrapper}>
-  
       <h3 className={styles.ingredientHeading}>Quantity</h3>
       <div className={styles.ingWrapper}>
         <div className={styles.innerWrapper}>
@@ -42,10 +32,12 @@ const Quantity = ({ qty }) => {
       <Button
         type='primary'
         shape='round'
-        icon={<CheckCircleOutlined />}
         size='large'
+        onClick={() => {
+          store.dispatch(updateStep({ step: 3 }));
+        }}
       >
-        Complete order
+        Continiue
       </Button>
     </div>
   );

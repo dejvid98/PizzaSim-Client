@@ -9,6 +9,10 @@ const slice = createSlice({
     size: '',
     step: 0,
     ing: '',
+    fisrtname: '',
+    lastname: '',
+    address: '',
+    phonenumber: '',
   },
   reducers: {
     updateTotal(state, action) {
@@ -55,6 +59,30 @@ const slice = createSlice({
         ing: action.payload.ing,
       };
     },
+    updateFirstname(state, action) {
+      return {
+        ...state,
+        fisrtname: action.payload.fisrtname,
+      };
+    },
+    updateLastname(state, action) {
+      return {
+        ...state,
+        lastname: action.payload.lastname,
+      };
+    },
+    updateAddress(state, action) {
+      return {
+        ...state,
+        address: action.payload.address,
+      };
+    },
+    updatePhonenumber(state, action) {
+      return {
+        ...state,
+        phonenumber: action.payload.phonenumber,
+      };
+    },
   },
 });
 
@@ -66,6 +94,10 @@ export const {
   updateTime,
   updateSize,
   updateIng,
+  updateAddress,
+  updateFirstname,
+  updateLastname,
+  updatePhonenumber,
 } = slice.actions;
 
 export default slice.reducer;

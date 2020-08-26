@@ -14,6 +14,7 @@ import store from '../store/store';
 import Size from './Size';
 import Ing from './Ingredients';
 import Quantity from './Quantity';
+import UserInfo from './UserInfo';
 import { updateStep } from '../store/userCart';
 
 const NewOrder = () => {
@@ -76,12 +77,14 @@ const NewOrder = () => {
           <Step title='Ingredients' />
           <Step title='Quantity' />
           <Step title='Contact Details' />
+          <Step title='Wait for da pizza!' />
         </Steps>
       </div>
 
       {orderStep === 0 ? <Size /> : null}
       {orderStep === 1 ? <Ing ing={ing} /> : null}
       {orderStep === 2 ? <Quantity qty={qty} /> : null}
+      {orderStep === 3 ? <UserInfo /> : null}
     </div>
   );
 };
