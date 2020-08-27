@@ -32,30 +32,34 @@ const UserInfo = () => {
   const [address, setAddress] = useState('');
 
   const handleSubmit = async () => {
-    store.dispatch(updateFirstname({ firstname }));
-    store.dispatch(updateLastname({ lastname }));
-    store.dispatch(updatePhonenumber({ phonenumber }));
-    store.dispatch(updateAddress({ address }));
-    const { qty, ing, size, total, time } = store.getState().userCart;
+    if (firstname && lastname && Number.isInteger(phonenumber) && address) {
+      store.dispatch(updateFirstname({ firstname }));
+      store.dispatch(updateLastname({ lastname }));
+      store.dispatch(updatePhonenumber({ phonenumber }));
+      store.dispatch(updateAddress({ address }));
+      const { qty, ing, size, total, time } = store.getState().userCart;
 
-    const resp = await HTTP.post('/order', {
-      size,
-      ingredient: ing,
-      quantity: qty,
-      firstname,
-      lastname,
-      address,
-      phonenumber,
-      price: total,
-      time,
-    });
-    const { queueTime, ordersLeft, id } = resp.data;
-    store.dispatch(updateQueueTime({ queueTime }));
-    store.dispatch(updateOrdersLeft({ ordersLeft }));
-    store.dispatch(updateStep({ step: 4 }));
-    store.dispatch(updateOrderDate({ orderDate: new Date().toLocaleString() }));
-    store.dispatch(updateOrderId({ orderid: id }));
-    store.dispatch(updateStartTime({ startTime: queueTime }));
+      const resp = await HTTP.post('/order', {
+        size,
+        ingredient: ing,
+        quantity: qty,
+        firstname,
+        lastname,
+        address,
+        phonenumber,
+        price: total,
+        time,
+      });
+      const { queueTime, ordersLeft, id } = resp.data;
+      store.dispatch(updateQueueTime({ queueTime }));
+      store.dispatch(updateOrdersLeft({ ordersLeft }));
+      store.dispatch(updateStep({ step: 4 }));
+      store.dispatch(
+        updateOrderDate({ orderDate: new Date().toLocaleString() })
+      );
+      store.dispatch(updateOrderId({ orderid: id }));
+      store.dispatch(updateStartTime({ startTime: queueTime }));
+    }
   };
 
   return (

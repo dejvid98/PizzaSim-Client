@@ -122,6 +122,12 @@ const slice = createSlice({
         ordersLeft: action.payload.ordersLeft,
       };
     },
+    updateQty(state, action) {
+      return {
+        ...state,
+        qty: action.payload.qty,
+      };
+    },
     updateOrderDate(state, action) {
       return {
         ...state,
@@ -198,6 +204,7 @@ export const {
   resetStore,
   restoreState,
   updateLastLogin,
+  updateQty,
 } = slice.actions;
 
 export default slice.reducer;
