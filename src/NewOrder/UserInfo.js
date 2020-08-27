@@ -32,7 +32,7 @@ const UserInfo = () => {
   const [address, setAddress] = useState('');
 
   const handleSubmit = async () => {
-    if (firstname && lastname && Number.isInteger(phonenumber) && address) {
+    if (firstname && lastname && Number.isInteger(phonenumber * 1) && address) {
       store.dispatch(updateFirstname({ firstname }));
       store.dispatch(updateLastname({ lastname }));
       store.dispatch(updatePhonenumber({ phonenumber }));
