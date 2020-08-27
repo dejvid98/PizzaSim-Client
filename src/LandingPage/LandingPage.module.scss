@@ -4,4 +4,50 @@
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
+
+  .firstOrders {
+    margin-top: 9rem;
+  }
+
+  .secondOrders {
+    margin-top: 2rem;
+  }
+
+  .stats {
+    margin-top: 8rem;
+    margin-bottom: 4rem;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffb515;
+    width: 55%;
+    border-radius: 5rem;
+    padding: 0rem 3rem;
+    p {
+      font-size: 1.3rem;
+      position: relative;
+      top: 0.3rem;
+      color: #fff;
+      .value {
+        font-size: 2rem;
+        position: relative;
+        top: 0.1rem;
+      }
+    }
+  }
+
+  .loginWrapper {
+    display: flex;
+    height: 20rem;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 12rem;
+
+    h3 {
+      font-size: 2.5rem;
+      color: #777;
+      letter-spacing: 1px;
+    }
+  }
 }

@@ -7,10 +7,24 @@ import LandingPage from './LandingPage/LandingPage';
 import NewOrder from './NewOrder/NewOrder';
 import AdminDashboard from './AdminDashboard/AdminDashboard';
 import updateCookies from './Util/UpdateCookies';
+import restoreState from './Util/RestoreState';
+import store from './store/store';
+import { updateLastLogin } from './store/userCart';
 
 function App() {
   useEffect(() => {
+    restoreState();
     updateCookies();
+
+    const lastLoginUpdate = setInterval(() => {
+      store.dispatch(
+        updateLastLogin({ lastLogin: new Date().toLocaleString() })
+      );
+    }, 1000);
+
+    return function cleanup() {
+      clearInterval(lastLoginUpdate);
+    };
   });
   return (
     <Switch>

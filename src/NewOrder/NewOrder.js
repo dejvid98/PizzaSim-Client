@@ -79,7 +79,7 @@ const NewOrder = () => {
           <Step title='Ingredients' />
           <Step title='Quantity' />
           <Step title='Contact Details' />
-          <Step title='Wait for da pizza!' />
+          <Step title='Wait for the pizza!' />
         </Steps>
       </div>
 

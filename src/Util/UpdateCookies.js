@@ -12,14 +12,16 @@ export default () => {
       ordersLeft,
       phonenumber,
       qty,
-      queueTime,
       size,
       startTime,
       step,
       time,
       total,
+      lastLogin,
+      queueTime,
     } = store.getState().userCart;
-    Cookie.set('usercart', {
+
+    const cookieObj = {
       address,
       fisrtname,
       ing,
@@ -28,13 +30,16 @@ export default () => {
       orderid,
       ordersLeft,
       phonenumber,
-      queueTime,
       qty,
       size,
       startTime,
       step,
       time,
       total,
-    });
+      lastLogin,
+      queueTime,
+    };
+
+    Cookie.set('usercart', JSON.stringify(cookieObj), { expires: 7 });
   });
 };

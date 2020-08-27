@@ -25,7 +25,7 @@ const OrderQueue = () => {
     const queueTicking = setInterval(() => {
       store.dispatch(reduceQueueTime({}));
     }, 1000);
-    console.log('hii');
+
     socket.on('orders', (orders) => {
       if (
         new Date(orders.orderDate) <

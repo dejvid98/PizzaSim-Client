@@ -18,6 +18,7 @@ const slice = createSlice({
     orderDate: '',
     orderid: '',
     startTime: '',
+    lastLogin: '',
   },
   reducers: {
     updateTotal(state, action) {
@@ -96,10 +97,17 @@ const slice = createSlice({
         queueTime: action.payload.queueTime,
       };
     },
+
     reduceQueueTime(state, action) {
       return {
         ...state,
         queueTime: state.queueTime - 1,
+      };
+    },
+    updateLastLogin(state, action) {
+      return {
+        ...state,
+        lastLogin: action.payload.lastLogin,
       };
     },
     updateStartTime(state, action) {
@@ -146,6 +154,26 @@ const slice = createSlice({
         startTime: '',
       };
     },
+    restoreState(state, action) {
+      return {
+        ...state,
+        total: action.payload.total,
+        time: action.payload.time,
+        qty: action.payload.qty,
+        size: action.payload.size,
+        step: action.payload.step,
+        ing: action.payload.ing,
+        fisrtname: action.payload.fisrtname,
+        lastname: action.payload.lastname,
+        address: action.payload.address,
+        phonenumber: action.payload.phonenumber,
+        queueTime: action.payload.queueTime,
+        ordersLeft: action.payload.ordersLeft,
+        orderDate: action.payload.orderDate,
+        orderid: action.payload.orderid,
+        startTime: action.payload.startTime,
+      };
+    },
   },
 });
 
@@ -168,6 +196,8 @@ export const {
   updateStartTime,
   reduceQueueTime,
   resetStore,
+  restoreState,
+  updateLastLogin,
 } = slice.actions;
 
 export default slice.reducer;

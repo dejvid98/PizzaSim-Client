@@ -7,7 +7,9 @@ const LandingPage = () => {
   return (
     <div className={styles.container}>
       <Navbar />
-      <OrdersList />
+      <div className={styles.firstOrders}>
+        <OrdersList />
+      </div>
     </div>
   );
 };
